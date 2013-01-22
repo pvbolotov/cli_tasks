@@ -1,0 +1,19 @@
+#!/bin/sed -f
+
+1 i\<html><body>
+
+s/\&/\&#x26;/g
+s/\\/\&#x5C;/g
+s/</\&#x3C;/g
+s/>/\&#x3E;/g
+s/\"/\&#x22;/g
+s/'/\&#x27;/g
+s/%/\&#x25;/g
+s/\$/\&#x24;/g
+s/\//\&#x2F;/g
+
+/^Part/!s/\(.*\)/\1<\/br>/g
+/^Part/s/\(.*\)/\1<\/H2>/g
+s/^Part/<H2>Part/g
+
+$ a\</html></body>
