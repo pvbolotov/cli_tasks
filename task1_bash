@@ -1,5 +1,4 @@
 #!/bin/bash
-#добавить arguments sanitizing т.к. если вместо числа ввести ^[[A , то будет "инъекция"
 
 while getopts "h" option
 do
