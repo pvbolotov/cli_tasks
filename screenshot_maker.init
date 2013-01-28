@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ "$1" == "run" ]
+then
+	./screenshot_maker.sh > /dev/null 2>&1 &
+	echo "screenshot_maker is now running"
+	exit 0
+elif [ "$1" == "kill" ]
+then
+	killall screenshot_maker.sh
+	echo "screenshot_maker is now off"
+elif [ "$1" == "help" ]
+then
+	echo "Command syntax : ./screenshot_maker.sh command\n [command = run/kill/help]"
+else
+	echo "Incorrect command syntax. Use command './screenshot_maker.init help' for getting help"
+fi
