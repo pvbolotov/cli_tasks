@@ -33,5 +33,5 @@ fi
 while true
 do
 	xwd -root | convert - "$storage_dir/screenshot_$LOGNAME_$(date +"%Y-%m-%d_%H-%M-%S").png"
-	sleep 5s
+	sleep "$dump_interval"s
 done
