@@ -39,3 +39,15 @@ done
 echo "Среднее время обработки запроса для резюме с id=43 : $(echo $total_resume_processing_time / ${#resume_processing_times[@]} | bc)"
 echo "Медиана времени обработки запроса для резюме с id=43 : $(echo $total_resume_processing_time / 2 | bc)"
 
+echo
+
+grep "$2\s12.*\/resume" "$1"| cut -f 1,2,8 -d ' '| sed "s|ms$||"| awk '{print $1 " " $2 " =resume " $3}' >> cli_task3.tmp
+grep "$2\s12.*\/vacancy" "$1"| cut -f 1,2,8 -d ' '| sed "s|ms$||"| awk '{print $1 " " $2 " =vacancy " $3}' >> cli_task3.tmp
+grep "$2\s12.*\/user" "$1"| cut -f 1,2,8 -d ' '| sed "s|ms$||"| awk '{print $1 " " $2 " =user " $3}' >> cli_task3.tmp
+
+tplot -if cli_task3.tmp -or 1000x800 -of png -o plot.png -dk 'within[-] quantile 500 0.95'
+
+rm cli_task3.tmp
+
+echo "График сгенерирован"
+
